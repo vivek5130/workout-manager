@@ -6,7 +6,8 @@ const mongoose = require('mongoose')
 const workoutRoutes = require('./routes/workouts')
 
 
-const port = process.env.PORT
+const port = process.env.PORT || 3000
+const BASE_URL = process.env.BASE_URL
 
 
 //middlewar to look for body, parses it so that it is available to request body object of route handlers
@@ -20,7 +21,8 @@ app.use((req,res,next)=>{
 // })
 
 //Routes
-app.use('/api/workouts',workoutRoutes)
+//changed
+app.use(`/api/workouts`,workoutRoutes)
 //Connecting to database
 mongoose.connect(process.env.MONGO_URI)
 .then(()=>{
